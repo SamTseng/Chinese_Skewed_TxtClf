@@ -20,6 +20,7 @@ Classifiers:
 7. Facebook's fastText
 8. Bidirectional Encoder Representations from Transformers (BERT)
 
+
 ## 1. Description of Files:
 1. Datasets: datasets mentioned above.
 2. BERT_txtclf: a folder for running BERT classifier.
