@@ -20,7 +20,6 @@ Classifiers:
 7. Facebook's fastText
 8. Bidirectional Encoder Representations from Transformers (BERT)
 
-
 ## 1. Description of Files:
 1. Datasets: datasets mentioned above.
 2. BERT_txtclf: a folder for running BERT classifier.
@@ -29,6 +28,11 @@ Classifiers:
 5. fastText_run_log.txt: a document and log file to describe how to run fastText classifier for the datasets.
 6. ft_metrics.sh: batch execution file to run fastText.
 7. ft_metrics.py: code required by the above batch execution file.
+
+Note: To be able to run the BERT classifier under BERT_txtclf, 
+you must download those imported files (or simply download all files) from
+https://github.com/google-research/bert to folder BERT_txtclf.
+
 
 ## 2. To cite this datasets, source codes, or experiment results:
 Yuen-Hsien Tseng, "[The Feasibility of Automated Topic Analysis: An Empirical Evaluation of Deep Learning Techniques Applied to Skew-Distributed Chinese Text Classification](http://joemls.dils.tku.edu.tw/fulltext/57104fullText.pdf)," Journal of Educational Media & Library Sciences, Vol. 57, No. 1 (March 2020).
