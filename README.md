@@ -1,6 +1,8 @@
 # Chinese_Skewed_TxtClf
 
-Chinese text classification datasets and their machine-learning based classifiers described in a comparative article.
+Chinese text classification datasets and their machine-learning based classifiers described in the paper:
+
+Yuen-Hsien Tseng, "[The Feasibility of Automated Topic Analysis: An Empirical Evaluation of Deep Learning Techniques Applied to Skew-Distributed Chinese Text Classification](http://joemls.dils.tku.edu.tw/fulltext/57104fullText.pdf)," Journal of Educational Media & Library Sciences, Vol. 57, No. 1 (March 2020).
 
 Datasets are (details of the datasets can be found in the article listed below): 
 1. WebDes
@@ -28,5 +30,4 @@ Classifiers:
 7. ft_metrics.py: code required by the above batch execution file.
 
 ## 2. To cite this datasets, source codes, or experiment results:
-Yuen-Hsien Tseng, "The Feasibility of Automated Topic Analysis: An Empirical Evaluation of Deep Learning Techniques Applied to Skew-Distributed Chinese Text Classification"
-under review by Journal of Educational Media & Library Sciences.
+Yuen-Hsien Tseng, "[The Feasibility of Automated Topic Analysis: An Empirical Evaluation of Deep Learning Techniques Applied to Skew-Distributed Chinese Text Classification](http://joemls.dils.tku.edu.tw/fulltext/57104fullText.pdf)," Journal of Educational Media & Library Sciences, Vol. 57, No. 1 (March 2020).
