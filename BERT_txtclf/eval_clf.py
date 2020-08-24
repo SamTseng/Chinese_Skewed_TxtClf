@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 import pandas, numpy, sys
-
-
-# In[ ]:
-
 
 if __name__ == "__main__":
     print('''
@@ -24,32 +17,17 @@ else:
     Test_File = '/Users/sam/GoogleDrive/AnacondaProjects/Shared/TxtClf_Dataset/Reuters_test_sl.txt'
     Predicted_File = '/Users/sam/Downloads/test_results_20.tsv' # not correct, just to extract Label_List
 
-# In[ ]:
-
-
 df0 = pandas.read_csv(Test_File, sep='\t', header=None)
 
-
-# In[ ]:
-
-
-print("The first 5 rows of '%s':" % Test_File)
+#print("The first 5 rows of '%s':" % Test_File)
 df0.head(5)
 
-
-# In[ ]:
-
-
 test_yL = df0[0]
-print("The first 5 categories of '%s'" % Test_File)
-print(test_yL[0:5])
+#print("The first 5 categories of '%s'" % Test_File)
+#print(test_yL[0:5])
 
 
 # ## Set variable: Label_List based on get_labels() function
-
-# In[ ]:
-
-
 # We need to set the Label_List by ourself, 
 #   because in /Users/sam/GoogleDrive/BERT/bert/Output_CnonC/test_results.tsv
 #   the column order is defined by the get_labels() function
@@ -61,9 +39,6 @@ print("Number of Labels: " + str(len(Label_List)))
 
 
 # ## Label_List should be same as that in get_labels() in run_classifier.py
-
-# In[ ]:
-
 
 # Note: 
 # 1. The value of Label_List here is obtained by running the code before this line
@@ -89,21 +64,7 @@ print("Number of Labels:" + str(len(Label_List)))
 
 
 # ## Read the prediction file
-
-# In[ ]:
-
-
 df = pandas.read_csv(Predicted_File, sep='\t', names=Label_List)
-
-
-# In[ ]:
-
-
-df.head(5)
-
-
-# In[ ]:
-
 
 def maxLabel(List, labels=Label_List):
     maxi = 0;
@@ -111,24 +72,11 @@ def maxLabel(List, labels=Label_List):
         if List[i]>List[maxi]: maxi = i
     return labels[maxi]
 
-
-# In[ ]:
-
-
 df['label'] = df.aggregate(func=maxLabel, axis='columns')
-
-
-# In[ ]:
-
-
-df.head(5)
-
-
-# In[ ]:
-
+#df.head(5)
 
 cat2num = pandas.Series(df['label']).value_counts()
-print(cat2num.sort_values(ascending=False))
+#print(cat2num.sort_values(ascending=False))
 
 # The next function does the similar report, but assume multiple columns
 #   and each column (category) has 0 or 1 values
@@ -144,18 +92,10 @@ def show_stats(All_DF):
     print(df_stats)
 
 
-# In[ ]:
-
-
 pred_yL = df['label']
-print(type(pred_yL))
-
+#print(type(pred_yL))
 
 # ## Now use test_yL and pred_yL to calculate the metrics
-
-# In[ ]:
-
-
 # Now we have test_yL and pred_yL
 from sklearn import preprocessing, metrics
 
@@ -166,9 +106,6 @@ test_y = LabEncoder.fit_transform(test_yL)
 Num_Classes = len(LabEncoder.classes_)
 
 
-# In[ ]:
-
-
 print("Num of Classes (Categories or Labels):", Num_Classes)
 print(type(LabEncoder.classes_),"Label Names [:2]:", LabEncoder.classes_[:2])
 print("Label Names transformed[:2]:", LabEncoder.transform(LabEncoder.classes_[:2]))
@@ -177,8 +114,6 @@ print("Label inverse transform [0, 1]:", LabEncoder.inverse_transform([0, 1]))
 
 # ## Evaluate the prediction performance 
 # based on variables: LabEncoder.classes_, test_yL, and pred_yL.
-
-# In[ ]:
 
 
 # http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html
@@ -223,9 +158,6 @@ def plot_confusion_matrix(cm, classes,
     plt.xlabel('Predicted label')
 
 
-# In[ ]:
-
-
 # use global variables:  LabEncoder.classes_
 def show_confusion_matrix_plot(test_yL, predictions):
     # Compute confusion matrix
@@ -244,9 +176,6 @@ def show_confusion_matrix_plot(test_yL, predictions):
     plt.show()
 
 
-# In[ ]:
-
-
 def tcfunc(x, n=4): # trancate a number to have n decimal digits
     d = '0' * n
     d = int('1' + d)
@@ -255,19 +184,16 @@ def tcfunc(x, n=4): # trancate a number to have n decimal digits
     return x
 
 
-# In[ ]:
-
-
 # http://scikit-learn.org/stable/modules/model_evaluation.html
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 
 def show_Result(test_yL, predictions):
-    print(predictions[:5], "\n")
+    #print(predictions[:5], "\n")
 
     # http://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html
-    print("MicroF1 = %0.4f, MacroF1=%0.4f" %
+    print("\n\nMicroF1 = %0.4f, MacroF1=%0.4f" %
         (metrics.f1_score(test_yL, predictions, average='micro'),
          metrics.f1_score(test_yL, predictions, average='macro')))
     # https://stackoverflow.com/questions/455612/limiting-floats-to-two-decimal-points
@@ -279,26 +205,18 @@ def show_Result(test_yL, predictions):
     print("Micro\t{}\t{}\t{}\t{}".format(Precision, Recall, F1, Support))
     (Precision, Recall, F1, Support) = list(map(tcfunc, 
         precision_recall_fscore_support(test_yL, predictions, average='macro')))
-    print("Macro\t{}\t{}\t{}\t{}".format(Precision, Recall, F1, Support))
+    print("Macro\t{}\t{}\t{}\t{}\n\n".format(Precision, Recall, F1, Support))
     
     if True:
 #    if False:
         print(confusion_matrix(test_yL, predictions))
+        print()
         try: 
             print(classification_report(test_yL, predictions, digits=4))
         except ValueError:
             print('May be some category has no predicted samples')
-        show_confusion_matrix_plot(test_yL, predictions)
-
-
-# In[ ]:
-
+        #show_confusion_matrix_plot(test_yL, predictions)
 
 show_Result(test_yL, pred_yL)
 
-
-# In[ ]:
-
-
-get_ipython().system('python -V')
-
+#get_ipython().system('python -V')
